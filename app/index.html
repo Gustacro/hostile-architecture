@@ -5,95 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hostile Architecture</title>
-    <style>
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-      }
-
-      #map_canvas {
-        float: left;
-        width: 50%;
-        height: 100%;
-      }
-      #panel_form {
-        float: right;
-        width: 50%;
-        height: 100%;
-        background-color: #339966;
-      }
-      #gform {
-        height: calc(100% - 22px);
-      }
-    </style>
+    <link rel="stylesheet" href="./css/main.css" />
   </head>
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2ydDX2MKXZV2yuH8cn9DB8oNbMQnepjE&callback=initMap"></script>
-  <script>
-    let DATA_SERVICE_URL =
-      "https://script.google.com/macros/s/AKfycbxHrqv5x-2lCtZJ1W49q0rjU6ATnSLZWAtJADqBj1Kil32H80pL/exec?jsonp=callback";
+  <script type="application/javascript" src="./js/map.js"></script>
 
-    let geocoder;
-    let map;
-
-    function initialize() {
-      //Create a geocoder
-      geocoder = new google.maps.Geocoder();
-      // define location, zoo , maxzoom, & background tile of the map
-      map = new google.maps.Map(document.getElementById("map_canvas"), {
-        center: new google.maps.LatLng(45.523064, -122.676483),
-        zoom: 10,
-        maxZoom: 20,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-      });
-
-      //Inject JavaScript (returned JSON) into the head of the page.
-      let scriptElement = document.createElement("script");
-      scriptElement.src = DATA_SERVICE_URL;
-      document.getElementsByTagName("head")[0].appendChild(scriptElement);
-
-      // Place marker
-      google.maps.event.addListener(map, "click", function (event) {
-        placeMarker(event.latLng);
-      });
-    }
-    function placeMarker(location) {
-      var marker = new google.maps.Marker({
-        position: location,
-        map: map,
-      });
-      var coords = location.lat().toFixed(6) + ", " + location.lng().toFixed(6);
-      document.getElementById("points").value = coords;
-    }
-
-    function callback(data) {
-      for (let i = 1; i < data.length; i++) {
-        address = data[i][2];
-
-        //Geocode the JSON returned from callback function.
-        codeAddress();
-      }
-    }
-
-    function codeAddress() {
-      //Google Async service.
-      geocoder.geocode({ address: address }, function (results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-          let marker = new google.maps.Marker({
-            position: results[0].geometry.location,
-            map: map,
-          });
-        } else {
-          alert(
-            "Geocode was not successful for the following reason:" + status
-          );
-        }
-      });
-    }
-  </script>
   <body onload="initialize()" onunload="GUnload()">
     <div id="map_canvas"></div>
     <div id="text-coords">

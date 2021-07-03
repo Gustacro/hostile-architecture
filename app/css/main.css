@@ -1,0 +1,22 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#map_canvas {
+  float: left;
+  width: 50%;
+  height: 100%;
+}
+#panel_form {
+  float: right;
+  width: 50%;
+  height: 100%;
+  background-color: #339966;
+}
+#gform {
+  height: calc(100% - 22px);
+}
