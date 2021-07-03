@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DocumentBook Example 1 using Google Maps API 3</title>
+  </head>
+  <body onload="initialize()" onunload="GUnload()">
+    <div id="map_canvas" style="width: 500px; height: 300px"></div>
+    <div
+      id="text_coords"
+      style="
+        position: absolute;
+        top: 60px;
+        left: 600px;
+        width: 360px;
+        height: 600px;
+        text-align: left;
+      "
+    >
+      <input type="text" id="points" />
+    </div>
+    <!-- <script
+      type="text/javascript"
+      src="http://maps.google.com/maps/api/js?sensor=false"
+    ></script> -->
+    <script src="./load_map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2ydDX2MKXZV2yuH8cn9DB8oNbMQnepjE&callback=initMap"></script>
+    <script type="text/javascript"></script>
+  </body>
+</html>

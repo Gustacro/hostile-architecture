@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>
+      Google Maps API v3 - Adding marker on Click and retrieving the
+      co-ordinates in a text box
+    </title>
+    <script
+      type="text/javascript"
+      src="http://maps.google.com/maps/api/js?sensor=false"
+    ></script>
+    <script type="text/javascript">
+      var map; //When using event as a parameter to a function declare map, strictly as a global variable
+      function initialize() {
+        var myLatlng = new google.maps.LatLng(28.635157, 77.22496);
+        map = new google.maps.Map(document.getElementById("map_canvas"), {
+          zoom: 14,
+          center: myLatlng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+        });
+
+        google.maps.event.addListener(map, "click", function (event) {
+          placeMarker(event.latLng);
+        });
+      }
+
+      function placeMarker(location) {
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map,
+        });
+        var coords =
+          location.lat().toFixed(6) + ", " + location.lng().toFixed(6);
+        document.getElementById("points").value = coords;
+      }
+    </script>
+  </head>
+  <body onload="initialize()" onunload="GUnload()">
+    <div id="map_canvas" style="width: 500px; height: 300px"></div>
+    <div
+      id="text_coords"
+      style="
+        position: absolute;
+        top: 60px;
+        left: 600px;
+        width: 360px;
+        height: 600px;
+        text-align: left;
+      "
+    >
+      <input type="text" id="points" />
+    </div>
+  </body>
+</html>
