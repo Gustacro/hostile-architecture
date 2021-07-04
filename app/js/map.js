@@ -16,13 +16,15 @@ function initialize() {
   });
 
   //Inject JavaScript (returned JSON) into the head of the page.
-  let scriptElement = document.createElement("script");
-  scriptElement.src = DATA_SERVICE_URL;
-  document.getElementsByTagName("head")[0].appendChild(scriptElement);
+//   let scriptElement = document.createElement("script");
+//   scriptElement.src = DATA_SERVICE_URL;
+//   document.getElementsByTagName("head")[0].appendChild(scriptElement);
 
   // Place marker
   google.maps.event.addListener(map, "click", function (event) {
     placeMarker(event.latLng);
+    const formInput = document.querySelectorAll("input.quantumWizTextinputPaperinputInput.exportInput")
+    console.log(formInput);
   });
 }
 function placeMarker(location) {
